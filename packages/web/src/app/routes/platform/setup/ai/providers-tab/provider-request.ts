@@ -79,6 +79,7 @@ function buildCreateRequest({
         },
         auth: { apiKey: value('apiKey') },
       };
+    case AIProviderName.ACEDATACLOUD:
     case AIProviderName.OPENAI:
     case AIProviderName.ANTHROPIC:
     case AIProviderName.GOOGLE:

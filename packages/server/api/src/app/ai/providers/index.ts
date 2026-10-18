@@ -1,6 +1,7 @@
 import { AIProviderName } from '@activepieces/core-utils'
 import { AIProviderAuthConfig, AIProviderConfig } from '@activepieces/shared'
 import { AIProviderStrategy } from './ai-provider'
+import { aceDataCloudProvider } from './acedatacloud-provider'
 import { anthropicProvider } from './anthropic-provider'
 import { azureProvider } from './azure-provider'
 import { bedrockProvider } from './bedrock-provider'
@@ -14,6 +15,7 @@ import { openRouterProvider } from './openrouter-provider'
 import { vertexProvider } from './vertex-provider'
 
 export const aiProviders: Record<AIProviderName, AIProviderStrategy<AIProviderAuthConfig, AIProviderConfig>> = {
+    [AIProviderName.ACEDATACLOUD]: aceDataCloudProvider,
     [AIProviderName.OPENAI]: openaiProvider,
     [AIProviderName.ANTHROPIC]: anthropicProvider,
     [AIProviderName.OPENROUTER]: openRouterProvider,

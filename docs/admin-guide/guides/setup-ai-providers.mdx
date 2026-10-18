@@ -41,6 +41,7 @@ Once configured, the provider can be used by supported AI features in Activepiec
   <div>
   **Model providers**
 
+  * Ace Data Cloud
   * OpenAI
   * Anthropic
   * Google Gemini
@@ -90,6 +91,7 @@ Spend on your own key goes to your provider, so put a gateway in front of it whe
   <div>
   **Model providers**
 
+  * Ace Data Cloud
   * OpenAI
   * Anthropic
   * Google Gemini
@@ -142,3 +144,15 @@ Spend on your own key goes to your provider, so put a gateway in front of it whe
 <Tip>
   You can add several providers at once and pick the model per agent or per step, so the expensive models only run on the work that needs them.
 </Tip>
+
+## Ace Data Cloud
+
+Connect **Ace Data Cloud** with an application API key; its chat-model list is retrieved without generating content. Media services such as Suno and Seedance use separate Pieces. See [Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloud_activepieces_provider_api_key) to copy or create a key.
+
+The named provider is available only in a build containing its integration; publication in an Ace fork does not add it to the official product. In that build, open **Platform Admin → Catalogue → AI Center → Providers → Ace Data Cloud → Connect**, paste the raw API key, save, and select an offered chat model in Ask AI. API key and model permissions are still controlled by your Ace account.
+
+![Copy or create a key: real redacted Ace console reference](https://raw.githubusercontent.com/AceDataCloud/SunoDify/8d3d03570e73324220f111f7fe343da0792a8071/_assets/tutorial/get-api-key-en.png)
+
+![Optional dedicated key: real redacted Ace console reference](https://raw.githubusercontent.com/AceDataCloud/SunoDify/8d3d03570e73324220f111f7fe343da0792a8071/_assets/tutorial/create-api-key-en.png)
+
+The console references are fixed-source screenshots reused on 2026-10-18; the official provider UI still requires acceptance and release. No new generation was made for this guide.

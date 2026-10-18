@@ -153,6 +153,7 @@ export const AIProviderConfig = z.union([
 export type AIProviderConfig = z.infer<typeof AIProviderConfig>
 
 export const AiProviderCredentials = z.discriminatedUnion('provider', [
+    z.object({ provider: z.literal(AIProviderName.ACEDATACLOUD), config: OpenAiCompatibleVendorConfig.partial(), auth: BaseAIProviderAuthConfig.partial() }),
     z.object({ provider: z.literal(AIProviderName.OPENAI), config: OpenAIProviderConfig.partial(), auth: OpenAIProviderAuthConfig.partial() }),
     z.object({ provider: z.literal(AIProviderName.OPENROUTER), config: OpenRouterProviderConfig.partial(), auth: OpenRouterProviderAuthConfig.partial() }),
     z.object({ provider: z.literal(AIProviderName.ANTHROPIC), config: AnthropicProviderConfig.partial(), auth: AnthropicProviderAuthConfig.partial() }),
