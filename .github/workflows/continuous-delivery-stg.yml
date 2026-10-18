@@ -17,7 +17,7 @@ on:
 
 jobs:
   detect-hotfix-merge:
-    if: github.event_name == 'push'
+    if: github.repository == 'activepieces/activepieces' && github.event_name == 'push'
     runs-on: ubuntu-latest
     outputs:
       is_hotfix_merge: ${{ steps.check.outputs.is_hotfix_merge }}
@@ -41,7 +41,7 @@ jobs:
           fi
 
   check-freeze:
-    if: github.event_name == 'push'
+    if: github.repository == 'activepieces/activepieces' && github.event_name == 'push'
     runs-on: ubuntu-latest
     outputs:
       frozen: ${{ steps.check.outputs.frozen }}
@@ -60,6 +60,7 @@ jobs:
   build-image:
     needs: [check-freeze]
     if: |
+      github.repository == 'activepieces/activepieces' &&
       always() &&
       ((github.event_name == 'push' && needs.check-freeze.outputs.frozen == 'false') ||
        (github.event_name == 'workflow_dispatch' && (github.event.inputs.action == 'deploy-staging' || github.event.inputs.action == 'deploy-staging-skip-freeze')))
@@ -158,6 +159,7 @@ jobs:
   tag-release-candidate:
     needs: [detect-hotfix-merge, deploy-staging-app, deploy-staging-workers]
     if: |
+      github.repository == 'activepieces/activepieces' &&
       always() &&
       (github.event_name == 'schedule' ||
        (github.event_name == 'push' && needs.detect-hotfix-merge.outputs.is_hotfix_merge == 'true' &&
