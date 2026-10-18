@@ -10,6 +10,13 @@ const bedrockRequest = {
 }
 
 describe('AI provider requests', () => {
+    it('accepts a named Ace key without a custom URL and rejects unsupported credential fields', () => {
+        const request = { displayName: 'Ace Data Cloud', provider: AIProviderName.ACEDATACLOUD, config: {}, auth: { apiKey: 'test-key' } }
+
+        expect(CreateAIProviderRequest.parse(request)).toEqual(request)
+        expect(CreateAIProviderRequest.safeParse({ ...request, auth: { ...request.auth, supplierKey: 'unsupported' } }).success).toBe(false)
+    })
+
     it('keeps every credential the provider models', () => {
         expect(CreateAIProviderRequest.parse(bedrockRequest).auth).toEqual(bedrockRequest.auth)
         expect(UpdateAIProviderRequest.parse({ displayName: 'AWS Bedrock', auth: bedrockRequest.auth }).auth).toEqual(bedrockRequest.auth)

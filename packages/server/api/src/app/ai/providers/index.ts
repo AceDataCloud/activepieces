@@ -1,7 +1,7 @@
 import { AIProviderName } from '@activepieces/core-utils'
 import { AIProviderAuthConfig, AIProviderConfig } from '@activepieces/shared'
-import { AIProviderStrategy } from './ai-provider'
 import { aceDataCloudProvider } from './acedatacloud-provider'
+import { AIProviderStrategy } from './ai-provider'
 import { anthropicProvider } from './anthropic-provider'
 import { azureProvider } from './azure-provider'
 import { bedrockProvider } from './bedrock-provider'
