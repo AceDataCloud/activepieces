@@ -457,6 +457,7 @@ import { AddAuditLogRetentionDaysToPlatform1865000000000 } from './migration/pos
 import { AddAiSpecificModelsVisibleToPlatformConfiguration1866000000000 } from './migration/postgres/1866000000000-AddAiSpecificModelsVisibleToPlatformConfiguration'
 import { AddAgentTask1867000000000 } from './migration/postgres/1867000000000-AddAgentTask'
 import { AddProviderConfigIdToAgentConversation1868000000000 } from './migration/postgres/1868000000000-AddProviderConfigIdToAgentConversation'
+import { DropChatRolloutUserTable1870000000000 } from './migration/postgres/1870000000000-DropChatRolloutUserTable'
 import { AddAgentConversationProviderConfigIdIndex1869000000000 } from './migration/postgres/background/1869000000000-AddAgentConversationProviderConfigIdIndex'
 
 const getSslConfig = (): boolean | TlsOptions => {
@@ -935,6 +936,7 @@ export const getMigrations = (): (new () => Migration)[] => {
         AddAiSpecificModelsVisibleToPlatformConfiguration1866000000000,
         AddAgentTask1867000000000,
         AddProviderConfigIdToAgentConversation1868000000000,
+        DropChatRolloutUserTable1870000000000,
     ]
     return migrations
 }
@@ -983,6 +985,20 @@ export const createPostgresDataSource = (): DataSource => {
         extra: {
             idleTimeoutMillis,
         },
+    })
+}
+
+export const createPostgresMigrationDataSource = (): DataSource | null => {
+    const url = system.get(AppSystemProp.POSTGRES_MIGRATION_URL)
+    if (isNil(url)) return null
+    return new DataSource({
+        type: 'postgres',
+        url,
+        ssl: getSslConfig(),
+        poolSize: 2,
+        migrationsRun: false,
+        synchronize: false,
+        ...commonProperties,
     })
 }
 
