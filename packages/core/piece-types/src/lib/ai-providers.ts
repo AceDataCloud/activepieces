@@ -418,6 +418,7 @@ const WEB_SEARCH_MODE_BY_PROVIDER: Partial<Record<AIProviderName, AIWebSearchMod
 }
 
 const NO_IMAGE_GENERATION_PROVIDERS = new Set<AIProviderName>([
+    AIProviderName.ACEDATACLOUD,
     AIProviderName.ANTHROPIC,
     AIProviderName.MISTRAL,
     AIProviderName.XAI,
@@ -429,6 +430,7 @@ const NO_IMAGE_GENERATION_PROVIDERS = new Set<AIProviderName>([
 ])
 
 export const OPENAI_COMPATIBLE_VENDOR_BASE_URLS: Record<OpenAiCompatibleVendor, string> = {
+    [AIProviderName.ACEDATACLOUD]: 'https://api.acedata.cloud/v1',
     [AIProviderName.XAI]: 'https://api.x.ai/v1',
     [AIProviderName.DEEPSEEK]: 'https://api.deepseek.com/v1',
     [AIProviderName.ZAI]: 'https://api.z.ai/api/paas/v4',
@@ -475,6 +477,7 @@ const DEFAULT_IMAGE_MODELS: Partial<Record<AIProviderName, string>> = {
 }
 
 export const AI_PROVIDER_CAPABILITIES: Record<AIProviderName, AIProviderCapabilities> = {
+    [AIProviderName.ACEDATACLOUD]: buildProviderCapabilities(AIProviderName.ACEDATACLOUD),
     [AIProviderName.OPENAI]: buildProviderCapabilities(AIProviderName.OPENAI),
     [AIProviderName.ANTHROPIC]: buildProviderCapabilities(AIProviderName.ANTHROPIC),
     [AIProviderName.OPENROUTER]: buildProviderCapabilities(AIProviderName.OPENROUTER),
@@ -513,6 +516,7 @@ export const AI_PROVIDER_ENTITY_TYPES = {
 export type AIWebSearchMode = 'native' | 'plugin'
 
 export type OpenAiCompatibleVendor =
+    | AIProviderName.ACEDATACLOUD
     | AIProviderName.XAI
     | AIProviderName.DEEPSEEK
     | AIProviderName.ZAI

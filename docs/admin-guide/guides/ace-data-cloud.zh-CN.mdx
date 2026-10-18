@@ -1,0 +1,28 @@
+---
+title: "Ace Data Cloud 接入候选"
+description: "原生 Provider 候选的授权与首用说明"
+---
+
+本页对应 Ace fork 的原生 Provider 实现候选，尚未进入 Activepieces 官方发行版。发布到 fork 不会让普通 Cloud 用户看到这个选项；官方审核、合并、发行与真实界面验收仍是独立门槛。
+
+## 获取 API Key
+
+1. 在 [Ace Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloud_activepieces_provider_api_key) 注册或登录。
+2. 若没有通用应用，点击 **Initialize General Application**。打开通用应用或有聊天模型权限的应用；通用 Key 可访问账号有权使用的服务，专用 Key 仅限该服务。
+3. 复制应用 Key，或进入 **Manage Keys → Create**，创建名为 Activepieces 的独立 Key，按需设置有效期和用量限制。若限制 Allowed APIs，应包括 `/v1/models` 与 `/v1/chat/completions`。
+
+![复制 Key 或进入 Manage Keys：真实已脱敏控制台参考](https://raw.githubusercontent.com/AceDataCloud/SunoDify/8d3d03570e73324220f111f7fe343da0792a8071/_assets/tutorial/get-api-key-en.png)
+
+![创建独立 Key：真实已脱敏控制台参考](https://raw.githubusercontent.com/AceDataCloud/SunoDify/8d3d03570e73324220f111f7fe343da0792a8071/_assets/tutorial/create-api-key-en.png)
+
+图片为固定源码的真实脱敏参考，2026-10-18 复用；没有可用凭据，也不证明新的模型请求。查看[当前价格与余额](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloud_activepieces_provider_pricing)，不承诺固定免费额度。
+
+## 在含本实现的 Activepieces 版本里配置
+
+进入 **Platform Admin → Catalogue → AI Center → Providers → Ace Data Cloud → Connect**，只粘贴 Key 本身，不加 Bearer。`platform-...` 账号管理 Token 不是模型 API Key。此候选固定 Ace API 地址，不要求用户填写 Base URL。
+
+保存后从账户读取聊天模型列表，再在 Ask AI 或相应 AI 动作中选择模型。读取列表不会生成内容；真正模型调用可能计费，需要另行明确授权验收。图片、音乐、视频等模型不会作为聊天模型推荐，使用 Suno、Seedance、HappyHorse、GPT Image、Nano Banana 等独立 Piece。
+
+401/403 时核对 Key、权限与到期时间；429 时降低并发；请求失败不要自动换模型或反复重提。到[请求历史](https://platform.acedata.cloud/console/usages?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloud_activepieces_provider_request_history)核对调用与 Credits；Credits 不直接等于 USD。不要把 Key 放到提示词、截图或导出流程。
+
+本轮只验证模型列表和离线协议，不声称真实付费聊天、Agent 工具循环或官方默认可见性已经通过。新增卡片的真实截图由隔离实例验收后补充，不使用自绘界面。

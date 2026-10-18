@@ -3,6 +3,19 @@ import { t } from 'i18next';
 
 export const SUPPORTED_AI_PROVIDERS: AiProviderInfo[] = [
   {
+    provider: AIProviderName.ACEDATACLOUD,
+    name: 'Ace Data Cloud',
+    logoUrl: 'https://cdn.acedata.cloud/assets/logo.png',
+    get markdown() {
+      return t(`Connect an Ace Data Cloud API key to use its available chat models.
+
+1. Register or sign in at [Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloud_activepieces_provider_api_key).
+2. If needed, choose **Initialize General Application**, then copy its API key or open **Manage Keys → Create** for a dedicated Activepieces key.
+3. Check model access, balance and [current prices](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloud_activepieces_provider_pricing). If you restrict Allowed APIs, include /v1/models and /v1/chat/completions.
+4. Paste only the key below, without Bearer. A platform management token is not an API key. Models are read from your account; media generation uses separate service Pieces.`);
+    },
+  },
+  {
     provider: AIProviderName.ANTHROPIC,
     name: 'Anthropic',
     markdown: t(`Follow these instructions to get your Claude API Key:

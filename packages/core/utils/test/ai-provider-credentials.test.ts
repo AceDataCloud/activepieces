@@ -46,3 +46,8 @@ describe('aiProviderCredentials', () => {
         expect(credentials).toEqual({ provider: AIProviderName.CUSTOM, auth: {}, config: {} })
     })
 })
+
+it('keeps a named Ace Data Cloud API key without custom endpoint config', () => {
+    expect(aiProviderCredentials({ provider: AIProviderName.ACEDATACLOUD, auth: { apiKey: 'test-key' }, config: {} }))
+        .toEqual({ provider: AIProviderName.ACEDATACLOUD, auth: { apiKey: 'test-key' }, config: {} })
+})

@@ -6,6 +6,12 @@ export { ActivePiecesProviderAuthConfig, ActivePiecesProviderConfig, AIProviderA
 const ProviderConfigUnion = z.discriminatedUnion('provider', [
     z.object({
         displayName: z.string().min(1),
+        provider: z.literal(AIProviderName.ACEDATACLOUD),
+        config: OpenAiCompatibleVendorConfig,
+        auth: strictAuth(BaseAIProviderAuthConfig),
+    }),
+    z.object({
+        displayName: z.string().min(1),
         provider: z.literal(AIProviderName.OPENAI),
         config: OpenAIProviderConfig,
         auth: strictAuth(OpenAIProviderAuthConfig),

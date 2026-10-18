@@ -47,6 +47,7 @@ export const SAFE_STRING_PATTERN = '^[^./]+$'
 export const STEP_NAME_REGEX = /^[a-zA-Z_][a-zA-Z0-9_]*$/
 
 export enum AIProviderName {
+    ACEDATACLOUD = 'acedatacloud',
     OPENAI = 'openai',
     OPENROUTER = 'openrouter',
     ANTHROPIC = 'anthropic',

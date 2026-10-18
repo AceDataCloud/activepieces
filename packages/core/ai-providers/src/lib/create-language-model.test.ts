@@ -354,3 +354,15 @@ describe('resolved endpoint, credentials and headers', () => {
         expect(headers['x-shared']).toBe('from-default')
     })
 })
+
+describe('Ace Data Cloud named provider', () => {
+    it('uses the fixed Ace chat endpoint with the connected key', async () => {
+        const sent = await generateHi(createLanguageModel({
+            credentials: aiProviderCredentials({ provider: AIProviderName.ACEDATACLOUD, auth: { apiKey: 'test-key' }, config: {} }),
+            modelId: 'gpt-4.1-mini',
+        }))
+        expect(sent.url).toBe('https://api.acedata.cloud/v1/chat/completions')
+        expect(sent.headers.get('authorization')).toBe('Bearer test-key')
+        expect(sent.body.model).toBe('gpt-4.1-mini')
+    })
+})

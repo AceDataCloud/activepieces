@@ -78,6 +78,7 @@ export function createLanguageModel({ credentials, modelId, options = {} }: Crea
             }
             return createOpenAICompatible({ name: 'mistral', baseURL: MISTRAL_BASE_URL, apiKey: apiKey ?? '', ...observed }).chatModel(modelId)
         }
+        case AIProviderName.ACEDATACLOUD:
         case AIProviderName.XAI:
         case AIProviderName.DEEPSEEK:
         case AIProviderName.ZAI:

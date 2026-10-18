@@ -28,6 +28,10 @@ Lets platform admins configure one or more LLM backends for AI pieces in flows. 
 - `isActivepiecesAiProviderHidden` hides the managed provider when the `aiCreditsEnabled` flag is off (`OPENROUTER_PROVISION_KEY` unset — typical self-hosted) or when `shouldHideActivepiecesAiProvider` returns true, which is gated only on `plan.embeddingEnabled`.
 - Hidden means treated as absent everywhere: `listProviders()` omits the row and `getChatProvider()`/`getChatProviderName()` return null (`findAvailableChatProviderRow`). This keeps a stale `enabledForChat` (e.g. from the 0.82.1 migration) from pinning chat to a provider that 402s with no top-up path (GIT-1620).
 
+### Ace Data Cloud
+
+The named provider reads chat models from the fixed Ace `/v1/models` endpoint and sends chat completions through the shared OpenAI-compatible model factory. Image, audio and video models stay in service Pieces; listing models does not generate content.
+
 ### Model catalog
 
 Per-model metadata (context window, max output, release date, per-million input/output price,

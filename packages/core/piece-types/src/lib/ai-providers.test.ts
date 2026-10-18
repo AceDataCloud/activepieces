@@ -14,6 +14,7 @@ describe('AI_PROVIDER_CAPABILITIES', () => {
             (provider) => !AI_PROVIDER_CAPABILITIES[provider].supportsImageGeneration,
         )
         expect(noImage.sort()).toEqual([
+            AIProviderName.ACEDATACLOUD,
             AIProviderName.ANTHROPIC,
             AIProviderName.MISTRAL,
             AIProviderName.XAI,
